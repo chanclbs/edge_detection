@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,15 +20,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:padding="16dp">
+        android:background="@drawable/bottom_banner_bg"
+        android:padding="48dp">
 
         <ImageView
             android:id="@+id/shut"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:layout_centerInParent="true"
             android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_camera_enhance_black" />
+            android:src="@drawable/ic_camera" />
+        <ImageView
+            android:id="@+id/nextBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_count" />
+        <TextView
+            android:id="@+id/textBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/nextBtn"
+            android:layout_alignEnd="@id/nextBtn"
+            tools:text="10"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:background="@drawable/badge_circle"
+            android:textColor="#0057FF"
+            android:visibility="gone"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </RelativeLayout>
