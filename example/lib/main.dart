@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String imagePath;
+    dynamic imagePath;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       imagePath = await EdgeDetection.detectEdge;
@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_imagePath);
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(

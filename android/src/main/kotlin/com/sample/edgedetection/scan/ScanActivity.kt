@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Display
 import android.view.MenuItem
 import android.view.SurfaceView
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sample.edgedetection.R
@@ -25,6 +26,7 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
 
     private lateinit var mPresenter: ScanPresenter
 
+    private val pathList = mutableListOf<String>()
 
     override fun provideContentViewId(): Int = R.layout.activity_scan
 
@@ -48,6 +50,10 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
 
         shut.setOnClickListener {
             mPresenter.shut()
+        }
+        nextBtn.setOnClickListener {
+            setResult(Activity.RESULT_OK, Intent().putExtra(SCANNED_RESULT, ArrayList(pathList)))
+            finish()
         }
     }
 
@@ -88,8 +94,10 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
             if (resultCode == Activity.RESULT_OK) {
                 if (null != data && null != data.extras) {
                     val path = data.extras!!.getString(SCANNED_RESULT)
-                    setResult(Activity.RESULT_OK, Intent().putExtra(SCANNED_RESULT, path))
-                    finish()
+                    pathList.add(path)
+                    updateBadgeNextBtn(pathList.size.toString())
+                    // setResult(Activity.RESULT_OK, Intent().putExtra(SCANNED_RESULT, path))
+                    // finish()
                 }
             }
         }
@@ -97,11 +105,16 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
             return true
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun updateBadgeNextBtn(numOfPath: String) {
+        textBadge.visibility = View.VISIBLE
+        textBadge.text = numOfPath
     }
 }

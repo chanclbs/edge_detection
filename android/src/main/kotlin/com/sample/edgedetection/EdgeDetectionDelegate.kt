@@ -6,6 +6,7 @@ import com.sample.edgedetection.scan.ScanActivity
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
+import java.util.ArrayList
 
 class EdgeDetectionDelegate(activity: Activity) : PluginRegistry.ActivityResultListener {
 
@@ -19,7 +20,9 @@ class EdgeDetectionDelegate(activity: Activity) : PluginRegistry.ActivityResultL
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 if (null != data && null != data.extras) {
-                    val filePath = data.extras!!.getString(SCANNED_RESULT)
+                    // val filePath = data.extras!!.getString(SCANNED_RESULT)
+                    // finishWithSuccess(filePath)
+                    val filePath = data.extras!!.getStringArrayList(SCANNED_RESULT).
                     finishWithSuccess(filePath)
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -61,7 +64,7 @@ class EdgeDetectionDelegate(activity: Activity) : PluginRegistry.ActivityResultL
         clearMethodCallAndResult()
     }
 
-    private fun finishWithSuccess(imagePath: String?) {
+    private fun finishWithSuccess(imagePath: ArrayList<String>?) {
         result?.success(imagePath)
         clearMethodCallAndResult()
     }
