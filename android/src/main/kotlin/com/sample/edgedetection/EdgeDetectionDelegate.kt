@@ -22,8 +22,10 @@ class EdgeDetectionDelegate(activity: Activity) : PluginRegistry.ActivityResultL
                 if (null != data && null != data.extras) {
                     // val filePath = data.extras!!.getString(SCANNED_RESULT)
                     // finishWithSuccess(filePath)
-                    val filePath = data.extras!!.getStringArrayList(SCANNED_RESULT).
+                    val filePath = data.extras!!.getStringArrayList(SCANNED_RESULT)
+                    println("55555555555555555555555555 : ${filePath}")
                     finishWithSuccess(filePath)
+                    
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
                     finishWithSuccess(null)

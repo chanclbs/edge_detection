@@ -26,7 +26,7 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
 
     private lateinit var mPresenter: ScanPresenter
 
-    private val pathList = mutableListOf<String>()
+    private val pathList:ArrayList<String> = ArrayList()
 
     override fun provideContentViewId(): Int = R.layout.activity_scan
 
@@ -52,7 +52,8 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
             mPresenter.shut()
         }
         nextBtn.setOnClickListener {
-            setResult(Activity.RESULT_OK, Intent().putExtra(SCANNED_RESULT, ArrayList(pathList)))
+            setResult(Activity.RESULT_OK, Intent().putExtra(SCANNED_RESULT,pathList ))
+            // setResult(Activity.RESULT_OK,Intent().putExtra(SCANNED_RESULT,pathList))
             finish()
         }
     }
